@@ -34,42 +34,44 @@ export default function PropertiesPage() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.page}>
       <header className={styles.header}>
-        <h1 className={styles.title}>物件一覧</h1>
-        <div className={styles.headerActions}>
-          <button onClick={handleAddClick} className={styles.addButton}>
-            ＋ 物件を追加
-          </button>
-          <button onClick={signOut} className={styles.logoutButton}>
-            ログアウト
-          </button>
+        <div className={styles.headerInner}>
+          <h1 className={styles.title}>🏠 不動産管理システム</h1>
+          <div className={styles.headerActions}>
+            <button onClick={handleAddClick} className={styles.addButton}>
+              ＋ 物件を追加
+            </button>
+            <button onClick={signOut} className={styles.logoutButton}>
+              ログアウト
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* エラー発生時にバナーで通知する */}
-      {error && <p className={styles.error}>エラー: {error}</p>}
+      <main className={styles.container}>
+        {error && <p className={styles.error}>エラー: {error}</p>}
 
-      {loading ? (
-        <p className={styles.loading}>読み込み中...</p>
-      ) : properties.length === 0 ? (
-        <p className={styles.empty}>
-          登録された物件がありません。「＋ 物件を追加」から登録してください。
-        </p>
-      ) : (
-        <div className={styles.grid}>
-          {properties.map((property) => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-              onEdit={handleEdit}
-              onDelete={deleteProperty}
-            />
-          ))}
-        </div>
-      )}
+        {loading ? (
+          <p className={styles.loading}>読み込み中...</p>
+        ) : properties.length === 0 ? (
+          <p className={styles.empty}>
+            登録された物件がありません。「＋ 物件を追加」から登録してください。
+          </p>
+        ) : (
+          <div className={styles.grid}>
+            {properties.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                onEdit={handleEdit}
+                onDelete={deleteProperty}
+              />
+            ))}
+          </div>
+        )}
+      </main>
 
-      {/* 追加・編集共用モーダル */}
       <PropertyModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}

@@ -1,24 +1,33 @@
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
 }
 
-/* タイトルと操作ボタン群を横並びにする */
 .header {
+  background-color: var(--color-primary);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.headerInner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 1.75rem;
-  color: #333;
+  font-size: 1.25rem;
+  color: var(--color-accent);
   margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
-/* ヘッダー右側のボタン群 */
 .headerActions {
   display: flex;
   gap: 0.75rem;
@@ -27,24 +36,25 @@
 
 .addButton {
   padding: 0.5rem 1rem;
-  background-color: #4a90e2;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
   border: none;
   border-radius: 4px;
   font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: opacity 0.2s;
 }
 
 .addButton:hover {
-  background-color: #357abd;
+  opacity: 0.85;
 }
 
 .logoutButton {
   padding: 0.5rem 1rem;
-  background-color: #e53e3e;
+  background-color: transparent;
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 4px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -52,14 +62,19 @@
 }
 
 .logoutButton:hover {
-  background-color: #c53030;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* エラーバナー */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
 .error {
   background-color: #fff5f5;
   border: 1px solid #feb2b2;
-  color: #e53e3e;
+  color: var(--color-error);
   padding: 0.75rem 1rem;
   border-radius: 4px;
   margin-bottom: 1.5rem;
@@ -67,17 +82,16 @@
 
 .loading {
   text-align: center;
-  color: #777;
+  color: var(--color-muted);
   margin-top: 3rem;
 }
 
 .empty {
   text-align: center;
-  color: #777;
+  color: var(--color-muted);
   margin-top: 3rem;
 }
 
-/* 物件カードのグリッドレイアウト */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
