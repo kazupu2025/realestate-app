@@ -24,17 +24,37 @@ git push origin main
 
 ## Commands
 
-This section will be updated as the project stack is decided and scaffolded.
-
 | Task | Command |
 |------|---------|
 | Install dependencies | `npm install` |
 | Start dev server | `npm run dev` |
 | Build for production | `npm run build` |
 | Lint | `npm run lint` |
-| Run tests | `npm test` |
-| Run a single test file | `npm test -- <path/to/test>` |
+| Preview production build | `npm run preview` |
 
 ## Architecture
 
-This section will be populated once the project structure is established. Update it here whenever major architectural decisions are made (routing strategy, data fetching patterns, state management, API layer, etc.).
+**Tech stack:** React 18 + Vite 5 + React Router DOM v6 + Supabase JS v2 + CSS Modules
+
+**Auth flow:**
+1. `src/lib/supabase.js` が `.env` から URL/Key を読み込みクライアントを生成する
+2. `src/context/AuthContext.jsx` が `onAuthStateChange` でセッションを監視し、`{ user, loading, signOut }` をContext経由でアプリ全体に提供する
+3. `src/components/ProtectedRoute.jsx` が `user === null` のとき `/login` へリダイレクトする
+
+**Routing:** `/` → `/properties`（リダイレクト）、`/login`、`/register`、`/properties`（ProtectedRoute保護）
+
+**Pages:** `src/pages/` 配下。各ページに対応する `*.module.css` が同階層にある。
+
+**CRUD flow:**
+- `src/hooks/useProperties.js` が SELECT/INSERT/UPDATE/DELETE を管理する
+- `useProperties` の返り値: `{ properties, loading, error, addProperty, updateProperty, deleteProperty }`
+- INSERT 時は `supabase.auth.getUser()` で取得した `user.id` を `user_id` にセットする
+- 各操作の成功後は `fetchProperties()` で一覧を再取得する（楽観的更新なし）
+
+**Modal pattern:**
+- `PropertyModal` は `property` prop が `null` で追加モード、データありで編集モードになる
+- `isOpen` が `false` の間は `null` を返してDOMに描画しない
+
+**Supabase settings:**
+- Authentication > Settings > Email Auth の「Confirm email」を無効にしないと、登録直後のリダイレクトが機能しない
+- `supabase/migrations/create_properties.sql` を Supabase ダッシュボードの SQL Editor で手動実行が必要
