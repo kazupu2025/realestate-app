@@ -149,8 +149,8 @@ Thumbs.db
 - [ ] **Step 2: `.env` を作成する**
 
 ```
-VITE_SUPABASE_URL=https://tkinojxeoumpfpabjryn.supabase.co
-VITE_SUPABASE_ANON_KEY=sb_publishable_Fhkp6dId0374GFGiXe_rLQ_i9HRQO2G
+VITE_SUPABASE_URL=https://<your-project-id>.supabase.co
+VITE_SUPABASE_ANON_KEY=<your-publishable-key>
 ```
 
 - [ ] **Step 3: `.gitignore` のみコミット・プッシュする（`.env` は除外）**

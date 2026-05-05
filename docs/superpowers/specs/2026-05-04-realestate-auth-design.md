@@ -124,8 +124,8 @@ const properties = [
 `.env` ファイルに以下を定義し、`.gitignore` で除外する。
 
 ```
-VITE_SUPABASE_URL=https://tkinojxeoumpfpabjryn.supabase.co
-VITE_SUPABASE_ANON_KEY=sb_publishable_Fhkp6dId0374GFGiXe_rLQ_i9HRQO2G
+VITE_SUPABASE_URL=https://<your-project-id>.supabase.co
+VITE_SUPABASE_ANON_KEY=<your-publishable-key>
 ```
 
 `supabase.js` では `import.meta.env.VITE_SUPABASE_URL` で参照する。
