@@ -29,39 +29,43 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
-        <h1 className={styles.title}>会員登録</h1>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <label className={styles.label}>
-            メールアドレス
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
-              required
-            />
-          </label>
-          <label className={styles.label}>
-            パスワード（6文字以上）
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
-              minLength={6}
-              required
-            />
-          </label>
-          {/* 登録エラーをフォーム下部に表示する */}
-          {error && <p className={styles.error}>エラー: {error}</p>}
-          <button type="submit" disabled={loading} className={styles.button}>
-            {loading ? '送信中...' : '会員登録'}
-          </button>
-        </form>
-        <p className={styles.link}>
-          すでにアカウントをお持ちの方は <Link to="/login">ログイン</Link>
-        </p>
+      <div className={styles.brand}>
+        <span className={styles.brandLogo}>🏠 不動産管理システム</span>
+      </div>
+      <div className={styles.body}>
+        <div className={styles.card}>
+          <h1 className={styles.title}>会員登録</h1>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <label className={styles.label}>
+              メールアドレス
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.input}
+                required
+              />
+            </label>
+            <label className={styles.label}>
+              パスワード（6文字以上）
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.input}
+                minLength={6}
+                required
+              />
+            </label>
+            {error && <p className={styles.error}>エラー: {error}</p>}
+            <button type="submit" disabled={loading} className={styles.button}>
+              {loading ? '送信中...' : '会員登録'}
+            </button>
+          </form>
+          <p className={styles.link}>
+            すでにアカウントをお持ちの方は <Link to="/login">ログイン</Link>
+          </p>
+        </div>
       </div>
     </div>
   )
