@@ -55,6 +55,10 @@ git push origin main
 - `PropertyModal` は `property` prop が `null` で追加モード、データありで編集モードになる
 - `isOpen` が `false` の間は `null` を返してDOMに描画しない
 
+## 参照ファイル
+
+`references/` フォルダにユーザーが置いたMDファイルは、関連するタスクの際に参照すること。
+
 **Supabase settings:**
 - Authentication > Settings > Email Auth の「Confirm email」を無効にしないと、登録直後のリダイレクトが機能しない
 - `supabase/migrations/create_properties.sql` を Supabase ダッシュボードの SQL Editor で手動実行が必要
