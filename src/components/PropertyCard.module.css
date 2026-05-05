@@ -1,46 +1,56 @@
-/* 物件情報を表示するカード */
 .card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(26, 43, 75, 0.12);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(26, 43, 75, 0.2);
+}
+
+.colorBar {
+  height: 4px;
+  background-color: var(--color-primary);
+}
+
+.content {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .name {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text);
   margin: 0 0 0.75rem;
 }
 
 .rent {
   font-size: 1.1rem;
-  color: #4a90e2;
-  font-weight: 600;
+  color: var(--color-accent);
+  font-weight: 700;
   margin: 0 0 0.5rem;
 }
 
 .area {
   font-size: 0.9rem;
-  color: #777;
+  color: var(--color-muted);
   margin: 0 0 0.25rem;
 }
 
 .floorPlan {
   font-size: 0.9rem;
-  color: #777;
+  color: var(--color-muted);
   margin: 0 0 1rem;
 }
 
-/* 編集・削除ボタンをカード下部に配置する */
 .actions {
   display: flex;
   gap: 0.5rem;
@@ -51,25 +61,25 @@
   flex: 1;
   padding: 0.4rem;
   background: none;
-  border: 1px solid #4a90e2;
+  border: 1px solid var(--color-primary);
   border-radius: 4px;
-  color: #4a90e2;
+  color: var(--color-primary);
   font-size: 0.85rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .editButton:hover {
-  background-color: #eef4fc;
+  background-color: rgba(26, 43, 75, 0.06);
 }
 
 .deleteButton {
   flex: 1;
   padding: 0.4rem;
   background: none;
-  border: 1px solid #e53e3e;
+  border: 1px solid var(--color-error);
   border-radius: 4px;
-  color: #e53e3e;
+  color: var(--color-error);
   font-size: 0.85rem;
   cursor: pointer;
   transition: background-color 0.2s;
