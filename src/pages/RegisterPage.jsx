@@ -8,6 +8,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [confirmSent, setConfirmSent] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -15,16 +16,38 @@ export default function RegisterPage() {
     setError(null)
     setLoading(true)
 
-    // Supabaseで新規ユーザーを登録する
-    // 前提: SupabaseダッシュボードでConfirm emailを無効にしていること
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { data, error } = await supabase.auth.signUp({ email, password })
 
     if (error) {
       setError(error.message)
-    } else {
+    } else if (data.session) {
       navigate('/properties')
+    } else {
+      setConfirmSent(true)
     }
     setLoading(false)
+  }
+
+  if (confirmSent) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.brand}>
+          <span className={styles.brandLogo}>🏠 不動産管理システム</span>
+        </div>
+        <div className={styles.body}>
+          <div className={styles.card}>
+            <h1 className={styles.title}>メールを確認してください</h1>
+            <p className={styles.confirmMessage}>
+              {email} に確認メールを送信しました。<br />
+              メール内のリンクをクリックして登録を完了してください。
+            </p>
+            <p className={styles.link}>
+              <Link to="/login">ログインページへ</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
