@@ -47,7 +47,9 @@ export default function PropertyModal({ isOpen, onClose, property, onSave }) {
     <div className={styles.overlay} onClick={onClose}>
       {/* クリックイベントがオーバーレイに伝播してモーダルが閉じないよう止める */}
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <h2 className={styles.title}>{property ? '物件を編集' : '物件を追加'}</h2>
+        <div className={styles.header}>
+          <h2 className={styles.title}>{property ? '物件を編集' : '物件を追加'}</h2>
+        </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label className={styles.label}>
             物件名
